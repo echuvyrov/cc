@@ -50,7 +50,7 @@
           "preValidation": "Provide VM and user information",
           "postValidation": "Done"
         },
-        "bladeTitle": "Cluster cluster settings",
+        "bladeTitle": "VM and user settings",
         "elements": [
           {
             "name": "vmSize",
