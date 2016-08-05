@@ -111,8 +111,8 @@
       "sshKey": "[basics('SSHCredntials').sshPublicKey]",
       "lastname": "[steps('UserInformation').lastName]",
       "firstname": "[steps('UserInformation').firstName]",
-      "firstname": "[steps('UserInformation').title]",
-      "firstname": "[steps('UserInformation').email]"
+      "email": "[steps('UserInformation').title]",
+      "title": "[steps('UserInformation').email]"
     }
   }
 }
