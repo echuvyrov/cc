@@ -46,6 +46,10 @@
       {
         "name": "UserInformation",
         "label": "VM and User Information",
+        "subLabel": {
+          "preValidation": "Provide VM and user information",
+          "postValidation": "Done"
+        },
         "bladeTitle": "Cluster cluster settings",
         "elements": [
           {
