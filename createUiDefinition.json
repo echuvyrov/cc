@@ -53,54 +53,153 @@
         "bladeTitle": "Cluster cluster settings",
         "elements": [
           {
-            "name": "vmSize",
-            "type": "Microsoft.Compute.SizeSelector",
-            "label": "Virtual machine size",
-            "toolTip": "The size of virtual machine to provision for each cluster node.",
-            "recommendedSizes": [
-              "Standard_D1",
-              "Standard_D2",
-              "Standard_D3",
-              "Standard_D4"
-            ],
+            "name": "storageAccount",
+            "type": "Microsoft.Storage.StorageAccountSelector",
+            "label": "Select or create a storage account",
+            "toolTip": "The two Virtual Hard Disks (VHDs) for the VMs will be stored in this storage account.",
             "constraints": {
-              "allowedSizes": [
-                "Standard_D1",
-                "Standard_D2",
-                "Standard_D3",
-                "Standard_D4"
+              "required": true,
+              "allowedTypes": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Standard_ZRS"
               ]
             },
-            "osPlatform": "Linux",
-            "imageReference": {
-              "publisher": "Canonical",
-              "offer": "UbuntuServer",
-              "sku": "14.04.2-LTS"
+            "defaultValue": {
+              "type": "Standard_LRS"
             }
           },
           {
-            "name": "lastName",
-            "type": "Microsoft.Compute.UserNameTextBox",
-            "label": "Last name",
-            "toolTip": "Your last name"
+            "name": "VMSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "VM size",
+            "toolTip": "",
+            "recommendedSizes": [
+              "Standard_D13_v2",
+              "Standard_D14_v2"
+            ],
+            "constraints": {
+              "required": true,
+              "excludedSizes": [
+                "Basic_A0",
+                "Basic_A1",
+                "Basic_A2",
+                "Standard_A0",
+                "Standard_A1",
+                "Standard_A2",
+                "Standard_A5",
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D11",
+                "Standard_D1_v2",
+                "Standard_D2_v2",
+                "Standard_D11_v2",
+                "Standard_DS1",
+                "Standard_DS2",
+                "Standard_DS11",
+                "Standard_G1",
+                "Standard_GS1"
+              ]
+            },
+            "imageReference": {
+              "publisher": "Canonical",
+              "offer": "UbuntuServer",
+              "sku": "14.04.3-LTS"
+            },
+            "osPlatform": "Linux"
           },
           {
-            "name": "firstName",
-            "type": "Microsoft.Compute.UserNameTextBox",
-            "label": "First name",
-            "toolTip": "Your First name"
+            "name": "sqlVMSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "VM size for SQL Server",
+            "toolTip": "The size of the SQL VM Created",
+            "recommendedSizes": [
+              "Standard_DS1",
+              "Standard_DS2",
+              "Standard_DS3",
+              "Standard_DS4",
+              "Standard_DS11",
+              "Standard_DS12",
+              "Standard_DS13",
+              "Standard_DS14",
+              "Standard_D13_v2",
+              "Standard_D14_v2"
+            ],
+            "constraints": {
+              "required": true,
+              "excludedSizes": [
+                "Basic_A0",
+                "Basic_A1",
+                "Basic_A2",
+                "Standard_A0",
+                "Standard_A1",
+                "Standard_A2",
+                "Standard_A5",
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D11",
+                "Standard_D1_v2",
+                "Standard_D2_v2",
+                "Standard_D11_v2",
+                "Standard_G1",
+                "Standard_GS1"
+              ]
+            },
+            "imageReference": {
+              "publisher": "MicrosoftSQLServer",
+              "offer": "SQL2014-WS2012R2",
+              "sku": "Standard"
+            },
+            "osPlatform": "Linux"
           },
           {
-            "name": "title",
-            "type": "Microsoft.Compute.UserNameTextBox",
-            "label": "Title",
-            "toolTip": "Your title"
+            "name": "dnsNameForPublicIP",
+            "type": "Microsoft.Network.PublicIpAddressCombo",
+            "label": {
+              "publicIpAddress": "Public IP address of the Ubuntu Node",
+              "domainNameLabel": "Public DNS label of the Ubuntu Node"
+            },
+            "toolTip": {
+              "domainNameLabel": "DNS label for the DgSecure Public IP address."
+            },
+            "defaultValue": {
+              "publicIpAddressName": "dgsecurepublicip",
+              "domainNameLabel": ""
+            },
+            "options": {
+              "hideNone": true,
+              "hideExisting": true
+            },
+            "constraints": {
+              "required": {
+                "domainNameLabel": true
+              }
+            }
           },
           {
-            "name": "email",
-            "type": "Microsoft.Compute.UserNameTextBox",
-            "label": "Email",
-            "toolTip": "Your email"
+            "name": "dnsNameForSQLPublicIP",
+            "type": "Microsoft.Network.PublicIpAddressCombo",
+            "label": {
+              "publicIpAddress": "Public IP address of the SQL Server Node",
+              "domainNameLabel": "Public DNS label of the SQL Server Node"
+            },
+            "toolTip": {
+              "domainNameLabel": "DNS label for the SQL Server Public IP address."
+            },
+            "defaultValue": {
+              "publicIpAddressName": "dgsqlpublicip",
+              "domainNameLabel": ""
+            },
+            "options": {
+              "hideNone": true,
+              "hideExisting": true
+            },
+            "constraints": {
+              "required": {
+                "domainNameLabel": true
+              }
+            }
           }
         ]
       }
