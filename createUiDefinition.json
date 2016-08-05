@@ -4,14 +4,12 @@
   "parameters": {
     "basics": [
       {
-        "name": "clusterName",
+        "name": "vmName",
         "type": "Microsoft.Common.TextBox",
-        "label": "Cluster name",
-        "toolTip": "The name of the new Sample Linux cluster.",
+        "label": "VM name",
+        "toolTip": "The name of the VM",
         "constraints": {
-          "required": true,
-          "regex": "^[a-z0-9]{3,24}$",
-          "validationMessage": "Cluster names must be between 3 and 24 characters long, and can contain only numbers and lowercase letters."
+          "required": true
         }
       },
       {
@@ -46,36 +44,16 @@
     ],
     "steps": [
       {
-        "name": "SampleClusterConfig",
-        "label": "Cluster settings",
+        "name": "UserInformation",
+        "label": "VM and User Information",
         "subLabel": {
-          "preValidation": "Configure the cluster",
+          "preValidation": "Provide VM and user information",
           "postValidation": "Done"
         },
         "bladeTitle": "Cluster cluster settings",
         "elements": [
           {
-            "name": "clusterNodeCount",
-            "type": "Microsoft.Common.DropDown",
-            "label": "Cluster size",
-            "defaultValue": "1",
-            "toolTip": "The number of virtual machines (nodes) to provision for the cluster.",
-            "constraints": {
-              "allowedValues": [
-                {
-                  "label": "1",
-                  "value": 1
-                },
-                {
-                  "label": "4",
-                  "value": 4
-                }
-
-              ]
-            }
-          },
-          {
-            "name": "clusterVmSize",
+            "name": "vmSize",
             "type": "Microsoft.Compute.SizeSelector",
             "label": "Virtual machine size",
             "toolTip": "The size of virtual machine to provision for each cluster node.",
@@ -98,22 +76,47 @@
               "publisher": "Canonical",
               "offer": "UbuntuServer",
               "sku": "14.04.2-LTS"
-            },
-            "count": "[steps('SampleClusterConfig').clusterNodeCount]"
+            }
+          },
+          {
+            "name": "lastName",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Last name",
+            "toolTip": "Your last name"
+          },
+          {
+            "name": "firstName",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "First name",
+            "toolTip": "Your First name"
+          },
+          {
+            "name": "title",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Title",
+            "toolTip": "Your title"
+          },
+          {
+            "name": "email",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Email",
+            "toolTip": "Your email"
           }
-
         ]
       }
     ],
     "outputs": {
-      "clusterName": "[basics('clusterName')]",
+      "clusterName": "[basics('vmName')]",
       "adminUsername": "[basics('adminUsername')]",
-      "clusterNodeCount": "[steps('SampleClusterConfig').clusterNodeCount]",
-      "clusterVmSize": "[steps('SampleClusterConfig').clusterVmSize]",
+      "vmSize": "[steps('UserInformation').vmSize]",
       "location": "[location()]",
       "authenticationType": "[basics('SSHCredntials').authenticationType]",
       "password": "[basics('SSHCredntials').password]",
-      "sshKey": "[basics('SSHCredntials').sshPublicKey]"
+      "sshKey": "[basics('SSHCredntials').sshPublicKey]",
+      "lastname": "[steps('UserInformation').lastName]",
+      "firstname": "[steps('UserInformation').firstName]",
+      "email": "[steps('UserInformation').title]",
+      "title": "[steps('UserInformation').email]"
     }
   }
 }
