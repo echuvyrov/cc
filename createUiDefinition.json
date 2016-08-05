@@ -1,0 +1,118 @@
+{
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.0.1-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "vmName",
+        "type": "Microsoft.Common.TextBox",
+        "label": "VM name",
+        "toolTip": "The name of the VM",
+        "constraints": {
+          "required": true
+        }
+      },
+      {
+        "name": "adminUsername",
+        "type": "Microsoft.Compute.UserNameTextBox",
+        "label": "Username",
+        "toolTip": "Admin username for the virtual machines. Same Credientials is to SSH to the box.",
+        "osPlatform": "Linux"
+      },
+      {
+        "name": "SSHCredntials",
+        "type": "Microsoft.Compute.CredentialsCombo",
+        "label": {
+          "authenticationType": "Authentication type",
+          "password": "Password",
+          "confirmPassword": "Confirm password",
+          "sshPublicKey": "SSH public key"
+        },
+        "toolTip": {
+          "authenticationType": "",
+          "password": "",
+          "sshPublicKey": ""
+        },
+        "constraints": {
+          "required": true
+        },
+        "options": {
+          "hideConfirmation": false
+        },
+        "osPlatform": "Linux"
+      }
+    ],
+    "steps": [
+      {
+        "name": "UserInformation",
+        "label": "VM and User Information",
+        "bladeTitle": "Cluster cluster settings",
+        "elements": [
+          {
+            "name": "vmSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "Virtual machine size",
+            "toolTip": "The size of virtual machine to provision for each cluster node.",
+            "recommendedSizes": [
+              "Standard_D1",
+              "Standard_D2",
+              "Standard_D3",
+              "Standard_D4"
+            ],
+            "constraints": {
+              "allowedSizes": [
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3",
+                "Standard_D4"
+              ]
+            },
+            "osPlatform": "Linux",
+            "imageReference": {
+              "publisher": "Canonical",
+              "offer": "UbuntuServer",
+              "sku": "14.04.2-LTS"
+            }
+          },
+          {
+            "name": "lastName",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Last name",
+            "toolTip": "Your last name"
+          },
+          {
+            "name": "firstName",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "First name",
+            "toolTip": "Your First name"
+          },
+          {
+            "name": "title",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Title",
+            "toolTip": "Your title"
+          },
+          {
+            "name": "email",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Email",
+            "toolTip": "Your email"
+          }
+        ]
+      }
+    ],
+    "outputs": {
+      "clusterName": "[basics('vmName')]",
+      "adminUsername": "[basics('adminUsername')]",
+      "vmSize": "[steps('UserInformation').vmSize]",
+      "location": "[location()]",
+      "authenticationType": "[basics('SSHCredntials').authenticationType]",
+      "password": "[basics('SSHCredntials').password]",
+      "sshKey": "[basics('SSHCredntials').sshPublicKey]",
+      "lastname": "[steps('UserInformation').lastName]",
+      "firstname": "[steps('UserInformation').firstName]",
+      "firstname": "[steps('UserInformation').title]",
+      "firstname": "[steps('UserInformation').email]"
+    }
+  }
+}
