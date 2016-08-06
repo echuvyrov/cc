@@ -1,0 +1,26 @@
+{
+  "vmName": {
+    "value": "chuvyrov"
+  },
+  "adminUsername": {
+    "value": "test1234"
+  },
+  "vmSize": {
+    "value": "Standard_D1"
+  },
+  "adminPassword": {
+    "value": "P@ssword12345"
+  },
+  "lastname": {
+    "value": "Eugene"
+  },
+  "firstname": {
+    "value": "Chuvyrov"
+  },
+  "email": {
+    "value": "test@test.com"
+  },
+  "title": {
+    "value": "CEO"
+  }
+}

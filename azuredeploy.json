@@ -2,12 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "dnsLabelPrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
-      }
-    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -20,9 +14,37 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "customData": {
+    "vmName": {
       "type": "string",
-      "defaultValue": "echo customData",
+      "defaultValue": "cc4",
+      "metadata": {
+        "description": "String passed down to the Virtual Machine."
+      }
+    },
+    "lastname": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "String passed down to the Virtual Machine."
+      }
+    },
+    "firstname": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "String passed down to the Virtual Machine."
+      }
+    },
+    "title": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "String passed down to the Virtual Machine."
+      }
+    },
+    "email": {
+      "type": "string",
+      "defaultValue": "",
       "metadata": {
         "description": "String passed down to the Virtual Machine."
       }
@@ -52,7 +74,6 @@
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
     "nicName": "networkInterface1",
-    "vmName": "vm1",
     "virtualNetworkName": "virtualNetwork1",
     "publicIPAddressName": "publicIp1",
     "addressPrefix": "10.0.0.0/16",
@@ -63,7 +84,9 @@
     "storageAccountType": "Standard_LRS",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
-    "apiVersion": "2015-06-15"
+    "apiVersion": "2015-06-15",
+    "dnsLabelPrefix": "cctest43",
+    "customData": "[concat(parameters('firstname'), '&', parameters('lastname'), '&',  parameters('title'), '&', parameters('email'))]"
   },
   "resources": [
     {
@@ -83,7 +106,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsLabelPrefix')]"
+          "domainNameLabel": "[variables('dnsLabelPrefix')]"
         }
       }
     },
@@ -137,7 +160,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[variables('vmName')]",
+      "name": "[parameters('vmName')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
@@ -148,10 +171,10 @@
           "vmSize": "[parameters('vmSize')]"
         },
         "osProfile": {
-          "computerName": "[variables('vmName')]",
+          "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",
-          "customData": "[base64(parameters('customData'))]"
+          "customData": "[base64(variables('customData'))]"
         },
         "storageProfile": {
           "imageReference": {

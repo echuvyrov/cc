@@ -130,12 +130,11 @@
       }
     ],
     "outputs": {
-      "clusterName": "[basics('vmName')]",
+      "vmName": "[basics('vmName')]",
       "adminUsername": "[basics('adminUsername')]",
       "vmSize": "[steps('UserInformation').vmSize]",
-      "location": "[location()]",
       "authenticationType": "[basics('SSHCredntials').authenticationType]",
-      "password": "[basics('SSHCredntials').password]",
+      "adminPassword": "[basics('SSHCredntials').password]",
       "sshKey": "[basics('SSHCredntials').sshPublicKey]",
       "lastname": "[steps('UserInformation').lastName]",
       "firstname": "[steps('UserInformation').firstName]",
