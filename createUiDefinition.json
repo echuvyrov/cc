@@ -82,25 +82,49 @@
             "name": "lastName",
             "type": "Microsoft.Compute.UserNameTextBox",
             "label": "Last name",
-            "toolTip": "Your last name"
+            "toolTip": "Your last name",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "validationMessage": "Last name is required"
+            },
+            "options": { }
           },
           {
             "name": "firstName",
             "type": "Microsoft.Compute.UserNameTextBox",
             "label": "First name",
-            "toolTip": "Your First name"
+            "toolTip": "Your First name",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "validationMessage": "First name is required"
+            },
+            "options": { }
           },
           {
             "name": "title",
             "type": "Microsoft.Compute.UserNameTextBox",
             "label": "Title",
-            "toolTip": "Your title"
+            "toolTip": "Your title",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "validationMessage": "Title is required"
+            },
+            "options": { }
           },
           {
             "name": "email",
             "type": "Microsoft.Compute.UserNameTextBox",
             "label": "Email",
-            "toolTip": "Your email"
+            "toolTip": "Your email",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "validationMessage": "Email is required"
+            },
+            "options": { }
           }
         ]
       }
@@ -115,8 +139,8 @@
       "sshKey": "[basics('SSHCredntials').sshPublicKey]",
       "lastname": "[steps('UserInformation').lastName]",
       "firstname": "[steps('UserInformation').firstName]",
-      "email": "[steps('UserInformation').title]",
-      "title": "[steps('UserInformation').email]"
+      "email": "[steps('UserInformation').email]",
+      "title": "[steps('UserInformation').title]"
     }
   }
 }
