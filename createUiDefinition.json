@@ -80,7 +80,7 @@
           },
           {
             "name": "lastName",
-            "type": "Microsoft.Compute.UserNameTextBox",
+            "type": "Microsoft.Common.TextBox",
             "label": "Last name",
             "toolTip": "Your last name",
             "defaultValue": "",
@@ -92,7 +92,7 @@
           },
           {
             "name": "firstName",
-            "type": "Microsoft.Compute.UserNameTextBox",
+            "type": "Microsoft.Common.TextBox",
             "label": "First name",
             "toolTip": "Your First name",
             "defaultValue": "",
@@ -104,7 +104,7 @@
           },
           {
             "name": "title",
-            "type": "Microsoft.Compute.UserNameTextBox",
+            "type": "Microsoft.Common.TextBox",
             "label": "Title",
             "toolTip": "Your title",
             "defaultValue": "",
@@ -116,7 +116,7 @@
           },
           {
             "name": "email",
-            "type": "Microsoft.Compute.UserNameTextBox",
+            "type": "Microsoft.Common.TextBox",
             "label": "Email",
             "toolTip": "Your email",
             "defaultValue": "",
