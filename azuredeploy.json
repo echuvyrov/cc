@@ -14,6 +14,19 @@
         "description": "Password for the Virtual Machine."
       }
     },
+    "authenticationType": {
+      "type": "string",
+      "metadata": {
+        "description": "Authentication type"
+      }
+    },
+    "sshKey": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "SSH public key"
+      }
+    },
     "vmName": {
       "type": "string",
       "defaultValue": "cc4",

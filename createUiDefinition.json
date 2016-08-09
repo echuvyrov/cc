@@ -131,9 +131,9 @@
     ],
     "outputs": {
       "vmName": "[basics('vmName')]",
-      "adminUsername": "[basics('adminUsername')]",
       "vmSize": "[steps('UserInformation').vmSize]",
       "authenticationType": "[basics('SSHCredntials').authenticationType]",
+      "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('SSHCredntials').password]",
       "sshKey": "[basics('SSHCredntials').sshPublicKey]",
       "lastname": "[steps('UserInformation').lastName]",
